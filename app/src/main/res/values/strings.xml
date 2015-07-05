@@ -2,22 +2,6 @@
     <string name="app_name">Recetas</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
-
-    <string name="nav_item_home">Home</string>
-    <string name="nav_item_recetas">Recetas</string>
-    <string name="nav_item_ingredientes">Ingredientes</string>
-    <string name="nav_item_favoritos">Favoritos</string>
-
-
-    <!-- navigation drawer item labels  -->
-    <string-array name="nav_drawer_labels">
-        <item>@string/nav_item_home</item>
-        <item>@string/nav_item_recetas</item>
-        <item>@string/nav_item_ingredientes</item>
-        <item>@string/nav_item_favoritos</item>
-    </string-array>
 
     <string name="title_home">Home</string>
     <string name="title_recetas">Recetas</string>
@@ -25,5 +9,5 @@
     <string name="title_favoritos">Favoritos</string>
 
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_prueba2">Prueba2</string>
 </resources>

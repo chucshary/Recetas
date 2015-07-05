@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="shary.recetas.activity.RecetasFragment">
+    tools:context="shary.recetas.activity.RecetasFragment"
+    android:background="@color/windowBackground">
     <RelativeLayout
         android:id="@+id/nav_header_container"
         android:layout_width="match_parent"
