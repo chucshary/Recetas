@@ -41,10 +41,7 @@ public class Main extends ActionBarActivity {
         ab.setHomeAsUpIndicator(R.drawable.menuico);
         ab.setDisplayHomeAsUpEnabled(true);
 
-
         navigationView = (NavigationView) findViewById(R.id.naview);
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
