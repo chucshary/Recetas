@@ -1,5 +1,7 @@
 package shary.recetas.activity;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -16,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import shary.recetas.R;
+import shary.recetas.activity.RecipeClass.ColumnsTable;
+import shary.recetas.activity.SQLite.UpdateRecords;
 
 /**
  * Created by Shary on 29/06/2015.
@@ -25,10 +29,27 @@ public class Main extends ActionBarActivity {
     NavigationView navigationView;
     private DrawerLayout drawerLayout;
     int mNavItemId = 0;
+    ColumnsTable columnas= new ColumnsTable();
+    private UpdateRecords download;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(this.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        System.out.println("CONECTION "+ isConnected);
+        if (isConnected==true)
+        {
+            download= new UpdateRecords(this,"recipe",columnas.getColumnsTableRecipe(),"recipes");
+            download= new UpdateRecords(this,"ingredients",columnas.getColumnsTableIngredients(),"ingredients");
+            download= new UpdateRecords(this,"step",columnas.getColumnsTableStep(),"instructions");
+        }
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -107,4 +128,5 @@ public class Main extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
