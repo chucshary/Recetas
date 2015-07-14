@@ -6,17 +6,12 @@ package shary.recetas.activity.rest;
 public class Recipe {
     private Integer id;
     private String nombre;
-    private String categoria;
-    private boolean favorito;
     private String tipo;
+    private String categoria;
+    private String duracion;
+    private Integer porcion;
 
-    public Recipe(String nombre, String categoria, boolean favorito, String tipo) {
-        this.nombre = nombre;
-        this.categoria = categoria;
-        this.favorito = favorito;
-        this.tipo = tipo;
-    }
-
+    
     public Integer getId() {
         return id;
     }
@@ -33,6 +28,14 @@ public class Recipe {
         this.nombre = nombre;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getCategoria() {
         return categoria;
     }
@@ -41,19 +44,19 @@ public class Recipe {
         this.categoria = categoria;
     }
 
-    public boolean isFavorito() {
-        return favorito;
+    public String getDuracion() {
+        return duracion;
     }
 
-    public void setFavorito(boolean favorito) {
-        this.favorito = favorito;
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Integer getPorcion() {
+        return porcion;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setPorcion(Integer porcion) {
+        this.porcion = porcion;
     }
 }

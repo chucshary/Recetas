@@ -32,30 +32,31 @@ public class UpdateRecords {
         this.tableJson = tableJson;
         valores = new String[this.columnas.length];
         querys = new Querys(this.context, tableName);
-        admin = new AdminSQLiteOpenHelper(this.context,
-                this.tableName, null, 1);
+        admin = new AdminSQLiteOpenHelper(this.context, this.tableName, null, 1);
         getData();
     }
 
     public void getData() {
         AsyncHttpClient client = new AsyncHttpClient();
-        /*String url = "http://192.168.1.68/nu-uk/Administrador/index.php/consultas";*/
-        String url = "http://192.168.0.6:9000/" + tableJson;
+        String url = "http://192.168.0.6:9000/" + this.tableJson;
         RequestParams params = new RequestParams();
         params.put("tableName", this.tableName);
+        System.out.println("ENTRO getData");
 
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                System.out.println("ENTRO JSON");
                 if (statusCode == 200) {
                     //call function...
                     getJSONData(new String(responseBody));
+
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                System.out.println("ERROR FATAL");
             }
         });
     }
