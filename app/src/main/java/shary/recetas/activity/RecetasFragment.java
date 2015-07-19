@@ -15,7 +15,8 @@ import shary.recetas.R;
  * Created by Shary on 27/06/2015.
  */
 public class RecetasFragment extends Fragment {
-    private String [] titles={"Desayunos", "Pastas", "Entradas", "Plato Fuerte","Postres"};
+    private String[] titles = {"Desayunos", "Pastas", "Entradas", "Plato Fuerte", "Postres"};
+
     public RecetasFragment() {
         // Required empty public constructor
     }
@@ -30,16 +31,18 @@ public class RecetasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recetas, container, false);
+
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager1);
         viewPager.setAdapter(new ViewPagerAdapter(getFragmentManager(),
-                rootView,titles,0,5));
+                rootView, titles, 0, 5));
 
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.sliding_tabs1);
         tabLayout.setupWithViewPager(viewPager);
 
         // Inflate the layout for this fragment
+        setRetainInstance(true);
         return rootView;
     }
 
@@ -51,6 +54,11 @@ public class RecetasFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
 }

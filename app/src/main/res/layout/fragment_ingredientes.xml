@@ -6,21 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="shary.recetas.activity.IngredientesFragment"
-    android:background="@color/windowBackground">
+    android:background="@color/windowBackground"
+    android:configChanges="orientation|screenSize">
 
     <RelativeLayout
         android:id="@+id/nav_header_container"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:background="@color/colorBack">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ingredients" />
+            android:src="@drawable/ingredients100" />
     </RelativeLayout>
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"

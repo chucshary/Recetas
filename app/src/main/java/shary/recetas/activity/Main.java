@@ -21,8 +21,7 @@ import android.widget.Toast;
 
 import shary.recetas.R;
 import shary.recetas.activity.SQLite.AdminSQLiteOpenHelper;
-import shary.recetas.activity.SQLite.ColumnsTable;
-import shary.recetas.activity.SQLite.UpdateRecords;
+import shary.recetas.activity.SQLite.Records;
 
 /**
  * Created by Shary on 29/06/2015.
@@ -31,52 +30,41 @@ public class Main extends ActionBarActivity {
     private Toolbar toolbar;
     NavigationView navigationView;
     private DrawerLayout drawerLayout;
-    int mNavItemId = 0;
-    ColumnsTable columnas = new ColumnsTable();
-    private UpdateRecords download;
+    String endpoint;
+    public String titulo = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
 
+        if (savedInstanceState == null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment fragment = new HomeFragment();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+        }
+
+        getSupportActionBar().setTitle(titulo);
+        setContentView(R.layout.main);
+        AdminSQLiteOpenHelper dbHelper = new AdminSQLiteOpenHelper(this,
+                "recipes", null, 1);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Toast.makeText(getBaseContext(), "Base de datos preparada", Toast.LENGTH_LONG).show();
 
         System.out.println("CONECTION " + checkConnectivity());
         if (checkConnectivity() == true) {
-            AdminSQLiteOpenHelper dbHelper = new AdminSQLiteOpenHelper(this,
-                    "ALGO", null, 1);
-
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            Toast.makeText(getBaseContext(), "Base de datos preparada", Toast.LENGTH_LONG).show();
-            /*
-            Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
-            if (c.moveToFirst()) {
-                while (!c.isAfterLast()) {
-                    Toast.makeText(Main.this, "Table Name=> " + c.getString(0), Toast.LENGTH_LONG).show();
-                    c.moveToNext();
-                }
-            }*/
-
+            endpoint = getString(R.string.api_endpoint);
+            Records records = new Records(this, endpoint);
         }
-
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.menuico);
+        ab.setHomeAsUpIndicator(R.drawable.menu);
         ab.setDisplayHomeAsUpEnabled(true);
-
-        Fragment fragment = new HomeFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container_body, fragment);
-        fragmentTransaction.commit();
-
-        // set the toolbar title
-        getSupportActionBar().setTitle("Home");
 
         navigationView = (NavigationView) findViewById(R.id.naview);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -84,6 +72,7 @@ public class Main extends ActionBarActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int x = menuItem.getItemId();
                 String title = menuItem.getTitle().toString();
+                titulo = title;
                 Fragment fragment = null;
                 switch (x) {
                     case R.id.navigation_sub_item_1:
@@ -125,8 +114,6 @@ public class Main extends ActionBarActivity {
                 return true;
             }
         });
-
-
     }
 
     @Override

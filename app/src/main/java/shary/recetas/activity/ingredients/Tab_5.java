@@ -20,25 +20,25 @@ import shary.recetas.activity.SQLite.Variables;
 /**
  * Created by Shary on 04/07/2015.
  */
-public class Tab_2 extends Fragment {
+public class Tab_5 extends Fragment {
     private ColumnsTable columnsTable = new ColumnsTable();
     private Variables variables = new Variables();
     private ListView ingredientsListView;
     public List<String> listado;
-    public String verduras = "";
+    public String carnes = "";
     View rootView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.tab2_ingredients, container, false);
+        rootView = inflater.inflate(R.layout.tab5_ingredients, container, false);
         ingredientsListView = (ListView) rootView.findViewById(R.id.ingredients_list_view);
-        verdura();
+        carnes();
         return rootView;
     }
 
-    public void verdura() {
+    public void carnes() {
         Querys querys = new Querys(rootView.getContext(), "ingredients");
-        querys.listadoDistict("nombre", 0, "clasificacion", "VERDURA");
+        querys.listadoDistict("nombre", 0, "clasificacion", "CARNES");
         listado = querys.lista;
 
         ArrayAdapter<String> itemsAdapter =
@@ -60,14 +60,13 @@ public class Tab_2 extends Fragment {
 
 
     public void verificar() {
-        verduras = "";
+        carnes = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                verduras += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                carnes += ingredientsListView.getItemAtPosition(i).toString() + ",";
             }
         }
-        variables.setVerdura(verduras);
-        System.out.println("verduras " + variables.getVerdura());
+        variables.setCarne(carnes);
+        System.out.println("carnes  " + variables.getCarne());
     }
-
 }

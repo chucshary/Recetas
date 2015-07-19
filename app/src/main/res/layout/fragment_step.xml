@@ -19,7 +19,7 @@
             android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/favourite100" />
+            android:src="@drawable/step100" />
 
     </RelativeLayout>
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textSize="45dp"
-        android:text="FAVORITOS"
+        android:text="PASOS"
         android:textStyle="bold"/>
 
 

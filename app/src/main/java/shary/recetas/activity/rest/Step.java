@@ -5,15 +5,9 @@ package shary.recetas.activity.rest;
  */
 public class Step {
     private Integer id;
-    private Integer id_receta_step;
     private Integer paso;
     private String paso_descripcion;
-
-    public Step(Integer id_receta_step, Integer paso, String paso_descripcion) {
-        this.id_receta_step = id_receta_step;
-        this.paso = paso;
-        this.paso_descripcion = paso_descripcion;
-    }
+    private Integer idRecipe_step;
 
     public Integer getId() {
         return id;
@@ -21,14 +15,6 @@ public class Step {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getId_receta_step() {
-        return id_receta_step;
-    }
-
-    public void setId_receta_step(Integer id_receta_step) {
-        this.id_receta_step = id_receta_step;
     }
 
     public Integer getPaso() {
@@ -45,5 +31,13 @@ public class Step {
 
     public void setPaso_descripcion(String paso_descripcion) {
         this.paso_descripcion = paso_descripcion;
+    }
+
+    public Integer getIdRecipe_step() {
+        return idRecipe_step;
+    }
+
+    public void setIdRecipe_step(Integer idRecipe_step) {
+        this.idRecipe_step = idRecipe_step;
     }
 }

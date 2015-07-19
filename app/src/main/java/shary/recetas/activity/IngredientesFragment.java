@@ -15,7 +15,8 @@ import shary.recetas.R;
  * Created by Shary on 27/06/2015.
  */
 public class IngredientesFragment extends Fragment {
-    private String [] titles={"Frutas y Verduras", "Cereales", "Especias y Condimentos", "Otros","Busqueda"};
+    private String[] titles = {"Frutas", "Verduras", "Cereales", "Condimentos", "Carnes", "Lacteos", "Agregar", "Otros", "Busqueda"};
+
     public IngredientesFragment() {
         // Required empty public constructor
     }
@@ -33,12 +34,13 @@ public class IngredientesFragment extends Fragment {
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
         viewPager.setAdapter(new ViewPagerAdapter(getFragmentManager(),
-                rootView,titles,1,5));
+                rootView, titles, 1, 9));
 
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
         // Inflate the layout for this fragment
+        setRetainInstance(true);
         return rootView;
     }
 
@@ -50,6 +52,11 @@ public class IngredientesFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
 }

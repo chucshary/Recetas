@@ -21,7 +21,9 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String RECIPE_FAV = "favorito";
 
 
-    private static final String TABLE_INGREDIENTS = "ingredients";
+    private static final String TABLE_INGREDIENTS_O = "ingredients_other";
+
+    private static final String TABLE_INGREDIENTS= "ingredients";
     private static final String INGREDIENTS_ID = "id";
     private static final String INGREDIENTS_NOMBRE = "nombre";
     private static final String INGREDIENTS_CANTIDAD = "cantidad";
@@ -58,6 +60,10 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 + INGREDIENTS_CLASIF + " TEXT,"
                 + INGREDIENTS_IDREC + " INTEGER" + ")";
 
+        String CREATE_INGREDIENTS_TABLE_O = "CREATE TABLE " + TABLE_INGREDIENTS_O + "("
+                + INGREDIENTS_NOMBRE + " TEXT PRIMARY KEY,"
+                + INGREDIENTS_CLASIF + " TEXT"+ ")";
+
         String CREATE_STEP_TABLE = "CREATE TABLE " + TABLE_STEP + "("
                 + STEP_ID + " INTEGER PRIMARY KEY,"
                 + STEP_PASO + " INTEGER,"
@@ -67,6 +73,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_RECIPE_TABLE);
         db.execSQL(CREATE_INGREDIENTS_TABLE);
+        db.execSQL(CREATE_INGREDIENTS_TABLE_O);
         db.execSQL(CREATE_STEP_TABLE);
         System.out.println("SE CREO DB");
     }
@@ -77,8 +84,9 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         onCreate(db);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENTS);
         onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENTS_O);
+        onCreate(db);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STEP);
         onCreate(db);
-
     }
 }

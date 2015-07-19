@@ -20,36 +20,43 @@ import shary.recetas.activity.SQLite.Variables;
 /**
  * Created by Shary on 04/07/2015.
  */
-public class Tab_2 extends Fragment {
+public class Tab_Other_Ingredient extends Fragment {
     private ColumnsTable columnsTable = new ColumnsTable();
     private Variables variables = new Variables();
     private ListView ingredientsListView;
     public List<String> listado;
-    public String verduras = "";
+    public String otros = "";
+    public CheckedTextView checkedTextView;
     View rootView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.tab2_ingredients, container, false);
+        rootView = inflater.inflate(R.layout.tab_other_ingredient, container, false);
         ingredientsListView = (ListView) rootView.findViewById(R.id.ingredients_list_view);
-        verdura();
+        other();
         return rootView;
     }
 
-    public void verdura() {
-        Querys querys = new Querys(rootView.getContext(), "ingredients");
-        querys.listadoDistict("nombre", 0, "clasificacion", "VERDURA");
+    public void other() {
+        Querys querys = new Querys(rootView.getContext(), "ingredients_other");
+        querys.listadoDistictNotClause("nombre", 0);
         listado = querys.lista;
-
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_multiple_choice, listado);
         ingredientsListView.setAdapter(itemsAdapter);
         ingredientsListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        otros = "";
+        for (int i = 0; i < listado.size(); i++) {
+            ingredientsListView.setItemChecked(i, true);
+            otros += ingredientsListView.getItemAtPosition(i).toString() + ",";
+            System.out.println("otros " + otros);
+        }
+
         ingredientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView checkedTextView = ((CheckedTextView) view);
-                if (checkedTextView.isChecked() == true) {
+                checkedTextView = ((CheckedTextView) view);
+                if (checkedTextView.isChecked() == false) {
                     verificar();
                 } else {
                     verificar();
@@ -58,16 +65,14 @@ public class Tab_2 extends Fragment {
         });
     }
 
-
     public void verificar() {
-        verduras = "";
+        otros = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                verduras += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                otros += ingredientsListView.getItemAtPosition(i).toString() + ",";
             }
         }
-        variables.setVerdura(verduras);
-        System.out.println("verduras " + variables.getVerdura());
+        variables.setOtro(otros);
+        System.out.println("otros " + variables.getOtro());
     }
-
 }

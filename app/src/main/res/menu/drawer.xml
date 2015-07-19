@@ -8,19 +8,19 @@
         <menu>
             <item
                 android:id="@+id/navigation_sub_item_1"
-                android:icon="@drawable/homeico"
+                android:icon="@drawable/home24"
                 android:title="@string/title_home"/>
             <item
                 android:id="@+id/navigation_sub_item_2"
-                android:icon="@drawable/recipes"
+                android:icon="@drawable/recipe24"
                 android:title="@string/title_recetas"/>
             <item
                 android:id="@+id/navigation_sub_item_3"
-                android:icon="@drawable/ingredient"
+                android:icon="@drawable/ingredients24"
                 android:title="@string/title_ingredientes"/>
             <item
                 android:id="@+id/navigation_sub_item_4"
-                android:icon="@drawable/abc_btn_rating_star_on_mtrl_alpha"
+                android:icon="@drawable/favourite24"
                 android:title="@string/title_favoritos"/>
         </menu>
     </item>

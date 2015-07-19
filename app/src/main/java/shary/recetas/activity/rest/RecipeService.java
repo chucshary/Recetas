@@ -11,4 +11,10 @@ import retrofit.http.GET;
 public interface RecipeService {
     @GET("/recipes")
     public void getAllRecipes(Callback<List<Recipe>> cb);
+
+    @GET("/ingredients")
+    public void getAllIngredients(Callback<List<Ingredient>> cb);
+
+    @GET("/instructions")
+    public void getAllInstructions(Callback<List<Step>> cb);
 }
