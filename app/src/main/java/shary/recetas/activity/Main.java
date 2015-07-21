@@ -43,8 +43,6 @@ public class Main extends ActionBarActivity {
             fragmentTransaction.replace(R.id.container_body, fragment);
             fragmentTransaction.commit();
         }
-
-        getSupportActionBar().setTitle(titulo);
         setContentView(R.layout.main);
         AdminSQLiteOpenHelper dbHelper = new AdminSQLiteOpenHelper(this,
                 "recipes", null, 1);

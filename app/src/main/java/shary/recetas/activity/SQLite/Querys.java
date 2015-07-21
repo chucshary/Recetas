@@ -75,6 +75,27 @@ public class Querys {
         }
     }
 
+    public void update(String columna, String nuevoValor, int numColumna, String clausula, String valorClausula) {
+        String[] valor = new String[1];
+        lista = new ArrayList<String>();
+        try {
+            String selectQuery = "UPDATE " + this.tableName + " SET " + columna + " = " + nuevoValor + " WHERE " + clausula + "=?";
+            SQLiteDatabase bd = admin.getWritableDatabase();
+            Cursor cursor = bd.rawQuery(selectQuery, new String[]{valorClausula});
+            if (cursor.moveToFirst()) {
+                do {
+                    for (int i = 0; i < 1; i++) {
+                        valor[i] = cursor.getString(i);
+                    }
+                    lista.add(valor[numColumna]);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            bd.close();
+        } catch (Exception e) {
+        }
+    }
+
 
     public void listadoDistict(String columna, int numColumna, String clausula, String valorClausula) {
         String[] valor = new String[1];

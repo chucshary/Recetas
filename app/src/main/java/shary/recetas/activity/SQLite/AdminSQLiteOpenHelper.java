@@ -23,7 +23,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_INGREDIENTS_O = "ingredients_other";
 
-    private static final String TABLE_INGREDIENTS= "ingredients";
+    private static final String TABLE_INGREDIENTS = "ingredients";
     private static final String INGREDIENTS_ID = "id";
     private static final String INGREDIENTS_NOMBRE = "nombre";
     private static final String INGREDIENTS_CANTIDAD = "cantidad";
@@ -51,7 +51,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 + RECIPE_CATEGORIA + " TEXT,"
                 + RECIPE_DURACION + " TEXT,"
                 + RECIPE_PORCION + " INTEGER,"
-                + RECIPE_FAV + " INTEGER"+ ")";
+                + RECIPE_FAV + " INTEGER" + ")";
 
         String CREATE_INGREDIENTS_TABLE = "CREATE TABLE " + TABLE_INGREDIENTS + "("
                 + INGREDIENTS_ID + " INTEGER PRIMARY KEY,"
@@ -62,7 +62,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
         String CREATE_INGREDIENTS_TABLE_O = "CREATE TABLE " + TABLE_INGREDIENTS_O + "("
                 + INGREDIENTS_NOMBRE + " TEXT PRIMARY KEY,"
-                + INGREDIENTS_CLASIF + " TEXT"+ ")";
+                + INGREDIENTS_CLASIF + " TEXT" + ")";
+
 
         String CREATE_STEP_TABLE = "CREATE TABLE " + TABLE_STEP + "("
                 + STEP_ID + " INTEGER PRIMARY KEY,"

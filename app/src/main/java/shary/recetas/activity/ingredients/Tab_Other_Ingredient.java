@@ -1,5 +1,7 @@
 package shary.recetas.activity.ingredients;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,7 +15,6 @@ import android.widget.ListView;
 import java.util.List;
 
 import shary.recetas.R;
-import shary.recetas.activity.SQLite.ColumnsTable;
 import shary.recetas.activity.SQLite.Querys;
 import shary.recetas.activity.SQLite.Variables;
 
@@ -21,13 +22,14 @@ import shary.recetas.activity.SQLite.Variables;
  * Created by Shary on 04/07/2015.
  */
 public class Tab_Other_Ingredient extends Fragment {
-    private ColumnsTable columnsTable = new ColumnsTable();
-    private Variables variables = new Variables();
+    private static Variables variables = new Variables();
     private ListView ingredientsListView;
     public List<String> listado;
     public String otros = "";
     public CheckedTextView checkedTextView;
+    SharedPreferences sharedPreferences;
     View rootView;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,13 +47,12 @@ public class Tab_Other_Ingredient extends Fragment {
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_multiple_choice, listado);
         ingredientsListView.setAdapter(itemsAdapter);
         ingredientsListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        otros = "";
-        for (int i = 0; i < listado.size(); i++) {
+        verificar();
+        /*for (int i = 0; i < listado.size(); i++) {
             ingredientsListView.setItemChecked(i, true);
             otros += ingredientsListView.getItemAtPosition(i).toString() + ",";
             System.out.println("otros " + otros);
-        }
-
+        }*/
         ingredientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -74,5 +75,9 @@ public class Tab_Other_Ingredient extends Fragment {
         }
         variables.setOtro(otros);
         System.out.println("otros " + variables.getOtro());
+        sharedPreferences = rootView.getContext().getSharedPreferences("Ingredients", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Otros", variables.getOtro());
+        editor.commit();
     }
 }

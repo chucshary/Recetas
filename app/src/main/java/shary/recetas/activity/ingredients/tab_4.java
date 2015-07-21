@@ -1,5 +1,7 @@
 package shary.recetas.activity.ingredients;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,12 +24,14 @@ import shary.recetas.activity.SQLite.Variables;
  */
 public class Tab_4 extends Fragment {
     private ColumnsTable columnsTable = new ColumnsTable();
-    private Variables variables = new Variables();
+    private static Variables variables = new Variables();
     private ListView ingredientsListView;
     public List<String> listado;
     public String condimentos = "";
+    SharedPreferences sharedPreferences;
     View rootView;
 
+    
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.tab4_ingredients, container, false);
@@ -45,6 +49,7 @@ public class Tab_4 extends Fragment {
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_multiple_choice, listado);
         ingredientsListView.setAdapter(itemsAdapter);
         ingredientsListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        verificar();
         ingredientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -68,5 +73,9 @@ public class Tab_4 extends Fragment {
         }
         variables.setCondimento(condimentos);
         System.out.println("condimentos  " + variables.getCondimento());
+        sharedPreferences = rootView.getContext().getSharedPreferences("Ingredients", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Condimentos", variables.getCondimento());
+        editor.commit();
     }
 }
