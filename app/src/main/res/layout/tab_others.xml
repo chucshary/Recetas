@@ -48,6 +48,8 @@
                 android:textSize="13sp"
                 android:textStyle="normal" />
         </TableRow>
+        <TableRow android:padding="20dp"></TableRow>
+        <TableRow android:padding="20dp"></TableRow>
 
         <TableRow>
 

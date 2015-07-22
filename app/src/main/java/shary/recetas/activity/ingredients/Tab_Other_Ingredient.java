@@ -36,6 +36,7 @@ public class Tab_Other_Ingredient extends Fragment {
         rootView = inflater.inflate(R.layout.tab_other_ingredient, container, false);
         ingredientsListView = (ListView) rootView.findViewById(R.id.ingredients_list_view);
         other();
+        verificar();
         return rootView;
     }
 
@@ -47,7 +48,6 @@ public class Tab_Other_Ingredient extends Fragment {
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_multiple_choice, listado);
         ingredientsListView.setAdapter(itemsAdapter);
         ingredientsListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        verificar();
         /*for (int i = 0; i < listado.size(); i++) {
             ingredientsListView.setItemChecked(i, true);
             otros += ingredientsListView.getItemAtPosition(i).toString() + ",";

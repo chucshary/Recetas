@@ -118,6 +118,28 @@ public class Querys {
         }
     }
 
+
+    public void filtradoBusqueda(String columnas, String columna, int numColumna, String clausula, String valorClausula) {
+        String[] valor = new String[1];
+        lista = new ArrayList<String>();
+        try {
+            String selectQuery = "SELECT " + columna + " FROM " + this.tableName + " WHERE " + clausula + " REGEXP ?";
+            SQLiteDatabase bd = admin.getWritableDatabase();
+            Cursor cursor = bd.rawQuery(selectQuery, new String[]{valorClausula});
+            if (cursor.moveToFirst()) {
+                do {
+                    for (int i = 0; i < 1; i++) {
+                        valor[i] = cursor.getString(i);
+                    }
+                    lista.add(valor[numColumna]);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            bd.close();
+        } catch (Exception e) {
+        }
+    }
+
     public void listadoDistictNotClause(String columna, int numColumna) {
         String[] valor = new String[1];
         lista = new ArrayList<String>();

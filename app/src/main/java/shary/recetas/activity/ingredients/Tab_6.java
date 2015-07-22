@@ -37,6 +37,7 @@ public class Tab_6 extends Fragment {
         rootView = inflater.inflate(R.layout.tab6_ingredients, container, false);
         ingredientsListView = (ListView) rootView.findViewById(R.id.ingredients_list_view);
         lacteo();
+        verificar();
         return rootView;
     }
 
@@ -49,7 +50,6 @@ public class Tab_6 extends Fragment {
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_multiple_choice, listado);
         ingredientsListView.setAdapter(itemsAdapter);
         ingredientsListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        verificar();
         ingredientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

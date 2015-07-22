@@ -3,15 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:stretchColumns="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Tab Busqueda"
-        android:id="@+id/txtsearch"
-        android:textColor="@color/tabsScrollColor"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        <TableRow android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_column="1"
+                android:layout_span="3"
+                android:fontFamily="Times New Roman"
+                android:text="Tus ingredientes son:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="normal|italic|bold" />
+
+        </TableRow>
+
+        <TableRow android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txtsearch"
+                android:layout_column="1"
+                android:layout_span="3"
+                android:fontFamily="Times New Roman"
+                android:text="Ingrediente"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="normal|italic" />
+
+        </TableRow>
+
+        <TableRow android:padding="20dp"></TableRow>
+        <TableRow android:padding="20dp"></TableRow>
+
+        <TableRow>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:src="@drawable/abc_ic_search_api_mtrl_alpha" />
+        </TableRow>
+    </TableLayout>
+
 
 </RelativeLayout>
