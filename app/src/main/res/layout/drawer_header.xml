@@ -7,10 +7,14 @@
     android:layout_alignParentTop="true">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        android:src="@drawable/logo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logorecetasp3"
         android:scaleType="fitCenter"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp" />
 
 </LinearLayout>
