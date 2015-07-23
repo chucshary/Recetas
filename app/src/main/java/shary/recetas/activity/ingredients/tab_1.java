@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class Tab_1 extends Fragment {
     public List<String> listado;
     SharedPreferences sharedPreferences;
     public String frutas = "";
+    private ActionBar ab;
     View rootView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

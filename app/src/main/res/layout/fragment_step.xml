@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="shary.recetas.activity.FavoritosFragment"
-    android:background="@color/windowBackground">
+    android:background="@color/windowBackground"
+    android:orientation="vertical"
+    tools:context="shary.recetas.activity.FavoritosFragment">
+
     <RelativeLayout
         android:id="@+id/nav_header_container"
         android:layout_width="match_parent"
@@ -22,16 +23,24 @@
             android:src="@drawable/step100" />
 
     </RelativeLayout>
-    <TextView
-        android:id="@+id/label"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:layout_width="fill_parent"
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/sliding_tabs2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="45dp"
-        android:text="PASOS"
-        android:textStyle="bold"/>
+        android:layout_gravity="bottom"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/colorPrimaryDark"
+        app:tabTextColor="@color/colorBack"
+        app:tabContentStart="70dp"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager2"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@color/windowBackground" />
 
 
 </LinearLayout>

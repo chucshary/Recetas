@@ -1,16 +1,23 @@
 package shary.recetas.activity.recipes;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.List;
 
 import shary.recetas.R;
+import shary.recetas.activity.PasosFragment;
 import shary.recetas.activity.SQLite.ColumnsTable;
 import shary.recetas.activity.SQLite.Querys;
 
@@ -57,6 +64,27 @@ public class Tab_Recipes extends Fragment {
         return rootView;
     }
 
+    public void getIdRecipe(int position) {
+        Querys querys = new Querys(rootView.getContext(), "recipe");
+        querys.listado(columnsTable.getColumnsTableRecipe(), 0, "nombre", recipeListView.getItemAtPosition(position).toString());
+        listado = querys.lista;
+        System.out.println("AQUI ID RECETA " + listado.get(0).toString());
+        SharedPreferences sharedPreferences = rootView.getContext().getSharedPreferences("Receta", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("idReceta", listado.get(0).toString());
+        editor.commit();
+    }
+
+    public void getInstruccions() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = new PasosFragment();
+        fragmentTransaction.replace(R.id.container_body, fragment);
+        fragmentTransaction.commit();
+        //rootView.getContext().getSupportActionBar().setTitle("Busqueda Receta");
+        ((ActionBarActivity) rootView.getContext()).getSupportActionBar().setTitle("Receta");
+    }
+
     public void desayuno() {
         Querys querys = new Querys(rootView.getContext(), "recipe");
         querys.listado(columnsTable.getColumnsTableRecipe(), 1, "tipo", "DESAYUNO");
@@ -65,6 +93,13 @@ public class Tab_Recipes extends Fragment {
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, listado);
         recipeListView.setAdapter(itemsAdapter);
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getIdRecipe(position);
+                getInstruccions();
+            }
+        });
     }
 
     public void pasta() {
@@ -75,6 +110,13 @@ public class Tab_Recipes extends Fragment {
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, listado);
         recipeListView.setAdapter(itemsAdapter);
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getIdRecipe(position);
+                getInstruccions();
+            }
+        });
     }
 
     public void entrada() {
@@ -85,6 +127,13 @@ public class Tab_Recipes extends Fragment {
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, listado);
         recipeListView.setAdapter(itemsAdapter);
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getIdRecipe(position);
+                getInstruccions();
+            }
+        });
     }
 
     public void platoFuerte() {
@@ -95,6 +144,13 @@ public class Tab_Recipes extends Fragment {
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, listado);
         recipeListView.setAdapter(itemsAdapter);
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getIdRecipe(position);
+                getInstruccions();
+            }
+        });
     }
 
     public void postre() {
@@ -105,5 +161,12 @@ public class Tab_Recipes extends Fragment {
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, listado);
         recipeListView.setAdapter(itemsAdapter);
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getIdRecipe(position);
+                getInstruccions();
+            }
+        });
     }
 }

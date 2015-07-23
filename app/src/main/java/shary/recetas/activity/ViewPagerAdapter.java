@@ -15,6 +15,8 @@ import shary.recetas.activity.ingredients.Tab_Busqueda;
 import shary.recetas.activity.ingredients.Tab_Other_Ingredient;
 import shary.recetas.activity.ingredients.Tab_Otros;
 import shary.recetas.activity.recipes.Tab_Recipes;
+import shary.recetas.activity.step.Tab_1_Step;
+import shary.recetas.activity.step.Tab_2_Step;
 
 /**
  * Created by Shary on 04/07/2015.
@@ -63,7 +65,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 default:
                     break;
             }
-        } else {
+        } else if (positionNav == 1) {
             switch (position) {
                 case 0:
                     Tab_1 tab_1 = new Tab_1();
@@ -92,6 +94,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 case 8:
                     Tab_Busqueda tab_busqueda = new Tab_Busqueda();
                     return tab_busqueda;
+                default:
+                    break;
+            }
+        } else {
+            switch (position) {
+                case 0:
+                    Tab_1_Step tab_1_step = new Tab_1_Step();
+                    return tab_1_step;
+                case 1:
+                    Tab_2_Step tab_2_step = new Tab_2_Step();
+                    return tab_2_step;
                 default:
                     break;
             }

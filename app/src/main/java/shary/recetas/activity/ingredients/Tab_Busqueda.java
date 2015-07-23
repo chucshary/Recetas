@@ -5,12 +5,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import shary.recetas.R;
+import shary.recetas.activity.RecetasBusquedaFragment;
 import shary.recetas.activity.SQLite.Variables;
 
 /**
@@ -43,7 +47,8 @@ public class Tab_Busqueda extends Fragment {
         busquedaCo = sharedPreferences.getString("Condimentos", "Nada");
         busquedaCa = sharedPreferences.getString("Carnes", "Nada");
         busquedaL = sharedPreferences.getString("Lacteos", "Nada");
-        busquedaO = sharedPreferences.getString("Otros", "Nada");
+        busquedaO = sharedPreferences.getString("Extras", "Nada");
+        System.out.println("otros tab busqueda " + busquedaO);
 
         String busqueda = busquedaF
                 + busquedaV
@@ -56,10 +61,22 @@ public class Tab_Busqueda extends Fragment {
             busqueda = busqueda.substring(0, busqueda.length() - 1);
             listadoIng.setText(busqueda);
             aux = busqueda.replace(",", "$|");
-            System.out.println("ENTRO BUSQUEDA " + aux.substring(0, busqueda.length() - 2));
+            //aux = aux.substring(0, busqueda.length() - 2);
+            System.out.println("ENTRO BUSQUEDA " + aux);
+            buscar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    Fragment fragment = new RecetasBusquedaFragment();
+                    fragmentTransaction.replace(R.id.container_body, fragment);
+                    fragmentTransaction.commit();
+                    //rootView.getContext().getSupportActionBar().setTitle("Busqueda Receta");
+                    ((ActionBarActivity) rootView.getContext()).getSupportActionBar().setTitle("Busqueda Receta");
+                }
+            });
 
-        } else
-        {
+        } else {
             busqueda = "Nada";
             listadoIng.setText(busqueda);
         }

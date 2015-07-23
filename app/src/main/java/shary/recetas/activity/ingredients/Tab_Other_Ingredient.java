@@ -33,7 +33,7 @@ public class Tab_Other_Ingredient extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.tab_other_ingredient, container, false);
+        rootView = inflater.inflate(R.layout.tab1_ingredients, container, false);
         ingredientsListView = (ListView) rootView.findViewById(R.id.ingredients_list_view);
         other();
         verificar();
@@ -44,20 +44,16 @@ public class Tab_Other_Ingredient extends Fragment {
         Querys querys = new Querys(rootView.getContext(), "ingredients_other");
         querys.listadoDistictNotClause("nombre", 0);
         listado = querys.lista;
+
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_multiple_choice, listado);
         ingredientsListView.setAdapter(itemsAdapter);
         ingredientsListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        /*for (int i = 0; i < listado.size(); i++) {
-            ingredientsListView.setItemChecked(i, true);
-            otros += ingredientsListView.getItemAtPosition(i).toString() + ",";
-            System.out.println("otros " + otros);
-        }*/
         ingredientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                checkedTextView = ((CheckedTextView) view);
-                if (checkedTextView.isChecked() == false) {
+                CheckedTextView checkedTextView = ((CheckedTextView) view);
+                if (checkedTextView.isChecked() == true) {
                     verificar();
                 } else {
                     verificar();
@@ -74,10 +70,11 @@ public class Tab_Other_Ingredient extends Fragment {
             }
         }
         variables.setOtro(otros);
-        System.out.println("otros " + variables.getOtro());
+        System.out.println("otros tab OTRO " + variables.getOtro());
+
         sharedPreferences = rootView.getContext().getSharedPreferences("Ingredients", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Otros", variables.getOtro());
+        editor.putString("Extras", variables.getOtro());
         editor.commit();
     }
 }

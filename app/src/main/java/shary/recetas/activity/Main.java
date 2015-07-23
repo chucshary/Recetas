@@ -32,17 +32,11 @@ public class Main extends ActionBarActivity {
     private DrawerLayout drawerLayout;
     String endpoint;
     public String titulo = "";
+    private ActionBar ab;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState == null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment fragment = new HomeFragment();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
-        }
         setContentView(R.layout.main);
         AdminSQLiteOpenHelper dbHelper = new AdminSQLiteOpenHelper(this,
                 "recipes", null, 1);
@@ -60,9 +54,17 @@ public class Main extends ActionBarActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final ActionBar ab = getSupportActionBar();
+        ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.menu);
         ab.setDisplayHomeAsUpEnabled(true);
+
+        if (savedInstanceState == null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment fragment = new HomeFragment();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+        }
 
         navigationView = (NavigationView) findViewById(R.id.naview);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
