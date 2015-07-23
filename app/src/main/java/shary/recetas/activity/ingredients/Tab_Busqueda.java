@@ -60,9 +60,6 @@ public class Tab_Busqueda extends Fragment {
         if (!busqueda.equals("")) {
             busqueda = busqueda.substring(0, busqueda.length() - 1);
             listadoIng.setText(busqueda);
-            aux = busqueda.replace(",", "$|");
-            //aux = aux.substring(0, busqueda.length() - 2);
-            System.out.println("ENTRO BUSQUEDA " + aux);
             buscar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -71,7 +68,6 @@ public class Tab_Busqueda extends Fragment {
                     Fragment fragment = new RecetasBusquedaFragment();
                     fragmentTransaction.replace(R.id.container_body, fragment);
                     fragmentTransaction.commit();
-                    //rootView.getContext().getSupportActionBar().setTitle("Busqueda Receta");
                     ((ActionBarActivity) rootView.getContext()).getSupportActionBar().setTitle("Busqueda Receta");
                 }
             });

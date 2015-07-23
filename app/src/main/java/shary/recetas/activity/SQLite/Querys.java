@@ -119,7 +119,7 @@ public class Querys {
     }
 
 
-    public void filtradoBusqueda(String columnas, String columna, int numColumna, String clausula, String valorClausula) {
+    public void filtradoBusqueda(String columna, int numColumna, String clausula, String valorClausula) {
         String[] valor = new String[1];
         lista = new ArrayList<String>();
         try {
