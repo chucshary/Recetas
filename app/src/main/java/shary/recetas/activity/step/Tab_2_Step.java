@@ -41,6 +41,7 @@ public class Tab_2_Step extends Fragment implements OnClickListener, TextToSpeec
     public String instruccioness = "";
     private ActionBar ab;
     String id = "";
+    Boolean speak = false;
     View rootView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,6 +101,7 @@ public class Tab_2_Step extends Fragment implements OnClickListener, TextToSpeec
                 Locale locSpanish = new Locale("spa", "MEX");
                 t1.setLanguage(locSpanish);
             } else {
+
                 // missing data, install it
                 Intent installIntent = new Intent();
                 installIntent.setAction(
@@ -121,21 +123,14 @@ public class Tab_2_Step extends Fragment implements OnClickListener, TextToSpeec
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
-            t1 = new TextToSpeech(getActivity(), this);
-            Locale locSpanish = new Locale("spa", "MEX");
-            int result = t1.setLanguage(locSpanish);
-            if (result == TextToSpeech.LANG_MISSING_DATA ||
-                    result == TextToSpeech.LANG_NOT_SUPPORTED) {
-            } else {
-            }
+            t1.setLanguage(Locale.getDefault());
         } else {
-            Log.e(TAG, "Could not initialize TextToSpeech.");
+            Log.e("TTS", "Initialization failed");
         }
     }
 }

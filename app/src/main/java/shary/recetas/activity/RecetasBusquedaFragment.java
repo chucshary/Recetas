@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -98,6 +102,37 @@ public class RecetasBusquedaFragment extends Fragment {
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, array3);
         ingredientsListView.setAdapter(itemsAdapter);
+        ingredientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getIdRecipe(position);
+                getInstruccions();
+            }
+        });
+    }
+
+    public void getIdRecipe(int position) {
+        Querys querys = new Querys(rootView.getContext(), "recipe");
+        querys.listado(columnsTable.getColumnsTableRecipe(), 0, "nombre", ingredientsListView.getItemAtPosition(position).toString());
+        listado = querys.lista;
+        System.out.println("AQUI ID RECETA " + listado.get(0).toString());
+        SharedPreferences sharedPreferences = rootView.getContext().getSharedPreferences("Receta", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("idReceta", listado.get(0).toString());
+        editor.commit();
+    }
+
+    public void getInstruccions() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = new PasosFragment();
+
+        fragmentTransaction.add(R.id.container_body, fragment);
+        fragmentTransaction.commit();
+
+
+        //rootView.getContext().getSupportActionBar().setTitle("Busqueda Receta");
+        ((ActionBarActivity) rootView.getContext()).getSupportActionBar().setTitle("Receta");
     }
 
     @Override
