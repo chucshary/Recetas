@@ -66,7 +66,7 @@ public class Tab_Other_Ingredient extends Fragment {
         otros = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                otros += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                otros += ingredientsListView.getItemAtPosition(i).toString() + "-";
             }
         }
         variables.setOtro(otros);

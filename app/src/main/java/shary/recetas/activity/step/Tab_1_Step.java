@@ -34,7 +34,7 @@ public class Tab_1_Step extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.tab1_step, container, false);
         ingredientsListView = (ListView) rootView.findViewById(R.id.ingredients_list_view);
-        getIdRecipe();
+        
         ingredientes();
         return rootView;
     }

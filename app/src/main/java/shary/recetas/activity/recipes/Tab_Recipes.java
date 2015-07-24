@@ -79,8 +79,11 @@ public class Tab_Recipes extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = new PasosFragment();
-        fragmentTransaction.replace(R.id.container_body, fragment);
+
+        fragmentTransaction.add(R.id.container_body, fragment);
         fragmentTransaction.commit();
+
+
         //rootView.getContext().getSupportActionBar().setTitle("Busqueda Receta");
         ((ActionBarActivity) rootView.getContext()).getSupportActionBar().setTitle("Receta");
     }

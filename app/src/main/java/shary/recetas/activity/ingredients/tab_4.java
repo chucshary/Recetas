@@ -68,7 +68,7 @@ public class Tab_4 extends Fragment {
         condimentos = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                condimentos += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                condimentos += ingredientsListView.getItemAtPosition(i).toString() + "-";
             }
         }
         variables.setCondimento(condimentos);

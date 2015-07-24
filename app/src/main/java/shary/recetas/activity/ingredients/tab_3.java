@@ -67,7 +67,7 @@ public class Tab_3 extends Fragment {
         cereales = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                cereales += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                cereales += ingredientsListView.getItemAtPosition(i).toString() + "-";
             }
         }
         variables.setCereal(cereales);

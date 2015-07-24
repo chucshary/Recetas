@@ -68,7 +68,7 @@ public class Tab_5 extends Fragment {
         carnes = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                carnes += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                carnes += ingredientsListView.getItemAtPosition(i).toString() + "-";
             }
         }
         variables.setCarne(carnes);

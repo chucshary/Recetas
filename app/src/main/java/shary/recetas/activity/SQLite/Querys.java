@@ -119,13 +119,20 @@ public class Querys {
     }
 
 
-    public void filtradoBusqueda(String columna, int numColumna, String clausula, String valorClausula) {
+    public void filtradoBusqueda(String columnas, String columna, int numColumna, String clausula, String valorClausula) {
+        String cadenaClausula = "";
         String[] valor = new String[1];
         lista = new ArrayList<String>();
+        String[] likes = columnas.split("-");
+        for (int j = 0; j < likes.length; j++) {
+            cadenaClausula += clausula + " LIKE '" + likes[j].toString() + "' OR ";
+        }
+        cadenaClausula = cadenaClausula.substring(0, cadenaClausula.length() - 3);
+        System.out.println(cadenaClausula);
         try {
-            String selectQuery = "SELECT " + columna + " FROM " + this.tableName + " WHERE " + clausula + " REGEXP ?";
+            String selectQuery = "SELECT DISTINCT " + columna + " FROM " + this.tableName + " WHERE " + cadenaClausula;
             SQLiteDatabase bd = admin.getWritableDatabase();
-            Cursor cursor = bd.rawQuery(selectQuery, new String[]{valorClausula});
+            Cursor cursor = bd.rawQuery(selectQuery, null);
             if (cursor.moveToFirst()) {
                 do {
                     for (int i = 0; i < 1; i++) {

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import shary.recetas.R;
@@ -73,8 +74,8 @@ public class RecetasBusquedaFragment extends Fragment {
                 + busquedaCa
                 + busquedaL
                 + busquedaO;
-        String aux = busqueda.replace(",", "$|");
-        auxBusqueda = "'" + aux.substring(0, aux.length() - 1) + "'";
+
+        auxBusqueda = busqueda.substring(0, busqueda.length() - 1);
         System.out.println("Busqueda receta " + auxBusqueda);
         ingredientes();
         // Inflate the layout for this fragment
@@ -83,11 +84,19 @@ public class RecetasBusquedaFragment extends Fragment {
 
     public void ingredientes() {
         Querys querys = new Querys(rootView.getContext(), "ingredients");
-        querys.filtradoBusqueda("recipe_id", 0, "nombre", auxBusqueda);
+        querys.filtradoBusqueda(auxBusqueda, "recipe_id", 0, "nombre", auxBusqueda);
         listado = querys.lista;
 
+        ArrayList<String> array3 = new ArrayList<String>(listado.size());
+        for (int i = 0; i < listado.size(); i++) {
+            querys = new Querys(rootView.getContext(), "recipe");
+            querys.listado(columnsTable.getColumnsTableRecipe(), 1, "id", listado.get(i).toString());
+            listado2 = querys.lista;
+            array3.add(listado2.get(0).toString());
+        }
+
         ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, listado);
+                new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, array3);
         ingredientsListView.setAdapter(itemsAdapter);
     }
 

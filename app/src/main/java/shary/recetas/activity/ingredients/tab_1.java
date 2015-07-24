@@ -69,7 +69,7 @@ public class Tab_1 extends Fragment {
         frutas = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                frutas += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                frutas += ingredientsListView.getItemAtPosition(i).toString() + "-";
             }
         }
         variables.setFruta(frutas);

@@ -58,7 +58,8 @@ public class Tab_Busqueda extends Fragment {
                 + busquedaL
                 + busquedaO;
         if (!busqueda.equals("")) {
-            busqueda = busqueda.substring(0, busqueda.length() - 1);
+            busqueda=busqueda.replace("-",", ");
+            busqueda = busqueda.substring(0, busqueda.length() - 2);
             listadoIng.setText(busqueda);
             buscar.setOnClickListener(new View.OnClickListener() {
                 @Override

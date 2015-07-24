@@ -68,7 +68,7 @@ public class Tab_6 extends Fragment {
         lacteos = "";
         for (int i = 0; i < listado.size(); i++) {
             if (ingredientsListView.getCheckedItemPositions().get(i) == true) {
-                lacteos += ingredientsListView.getItemAtPosition(i).toString() + ",";
+                lacteos += ingredientsListView.getItemAtPosition(i).toString() + "-";
             }
         }
         variables.setLacteo(lacteos);
