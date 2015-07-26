@@ -1,7 +1,7 @@
 package shary.recetas.activity;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View;
 
@@ -27,6 +27,18 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private View context;
     private int positionNav = 0;
     public Tab_Recipes tab_Recipes;
+    public Recycler recycler;
+    Tab_1 tab_1;
+    Tab_2 tab_2;
+    Tab_3 tab_3;
+    Tab_4 tab_4;
+    Tab_5 tab_5;
+    Tab_6 tab_6;
+    Tab_Otros tab_otros;
+    Tab_Other_Ingredient tab_other_ingredient;
+    Tab_Busqueda tab_busqueda;
+    Tab_1_Step tab_1_step;
+    Tab_2_Step tab_2_step;
 
     public ViewPagerAdapter(FragmentManager fm, View context, String[] titles, int position, int page) {
         super(fm);
@@ -35,6 +47,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         this.positionNav = position;
         this.PAGE_COUNT = page;
 
+        tab_1 = new Tab_1();
+        tab_2 = new Tab_2();
+        tab_3 = new Tab_3();
+        tab_4 = new Tab_4();
+        tab_5 = new Tab_5();
+        tab_6 = new Tab_6();
+        tab_otros = new Tab_Otros();
+        tab_other_ingredient = new Tab_Other_Ingredient();
+        tab_busqueda = new Tab_Busqueda();
+        tab_1_step = new Tab_1_Step();
+        tab_2_step = new Tab_2_Step();
     }
 
     @Override
@@ -48,51 +71,53 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         if (positionNav == 0) {
             switch (position) {
                 case 0:
-                    tab_Recipes = Tab_Recipes.newInstance(0);
-                    return tab_Recipes;
+                    //recycler = new Recycler();
+                    recycler = Recycler.newInstance(0);
+                    return recycler;
                 case 1:
-                    tab_Recipes = Tab_Recipes.newInstance(1);
-                    return tab_Recipes;
+                    //recycler = new Recycler();
+                    recycler = Recycler.newInstance(1);
+                    return recycler;
                 case 2:
-                    tab_Recipes = Tab_Recipes.newInstance(2);
-                    return tab_Recipes;
+                    //recycler = new Recycler();
+                    recycler = Recycler.newInstance(2);
+                    return recycler;
                 case 3:
-                    tab_Recipes = Tab_Recipes.newInstance(3);
-                    return tab_Recipes;
+                    //recycler = new Recycler();
+                    recycler = Recycler.newInstance(3);
+                    return recycler;
                 case 4:
-                    tab_Recipes = Tab_Recipes.newInstance(4);
-                    return tab_Recipes;
+                    //recycler = new Recycler();
+                    recycler = Recycler.newInstance(4);
+                    return recycler;
                 default:
                     break;
             }
         } else if (positionNav == 1) {
             switch (position) {
                 case 0:
-                    Tab_1 tab_1 = new Tab_1();
+
                     return tab_1;
                 case 1:
-                    Tab_2 tab_2 = new Tab_2();
+
                     return tab_2;
                 case 2:
-                    Tab_3 tab_3 = new Tab_3();
+
                     return tab_3;
                 case 3:
-                    Tab_4 tab_4 = new Tab_4();
+
                     return tab_4;
                 case 4:
-                    Tab_5 tab_5 = new Tab_5();
+
                     return tab_5;
                 case 5:
-                    Tab_6 tab_6 = new Tab_6();
+
                     return tab_6;
                 case 6:
-                    Tab_Otros tab_otros = new Tab_Otros();
                     return tab_otros;
                 case 7:
-                    Tab_Other_Ingredient tab_other_ingredient = new Tab_Other_Ingredient();
                     return tab_other_ingredient;
                 case 8:
-                    Tab_Busqueda tab_busqueda = new Tab_Busqueda();
                     return tab_busqueda;
                 default:
                     break;
@@ -100,10 +125,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         } else {
             switch (position) {
                 case 0:
-                    Tab_1_Step tab_1_step = new Tab_1_Step();
                     return tab_1_step;
                 case 1:
-                    Tab_2_Step tab_2_step = new Tab_2_Step();
                     return tab_2_step;
                 default:
                     break;
@@ -111,7 +134,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         }
         return null;
     }
-
 
     @Override
     public CharSequence getPageTitle(int position) {

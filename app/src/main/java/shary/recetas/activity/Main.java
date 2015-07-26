@@ -6,9 +6,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import shary.recetas.R;
 import shary.recetas.activity.SQLite.AdminSQLiteOpenHelper;
@@ -36,12 +32,11 @@ public class Main extends ActionBarActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main);
+
         AdminSQLiteOpenHelper dbHelper = new AdminSQLiteOpenHelper(this,
                 "recipes", null, 1);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Toast.makeText(getBaseContext(), "Base de datos preparada", Toast.LENGTH_LONG).show();
 
         System.out.println("CONECTION " + checkConnectivity());
         if (checkConnectivity() == true) {
@@ -59,11 +54,8 @@ public class Main extends ActionBarActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment fragment = new HomeFragment();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container_body, new HomeFragment()).commit();
+
         }
 
         navigationView = (NavigationView) findViewById(R.id.naview);
@@ -73,40 +65,40 @@ public class Main extends ActionBarActivity {
                 int x = menuItem.getItemId();
                 String title = menuItem.getTitle().toString();
                 titulo = title;
-                Fragment fragment = null;
                 switch (x) {
                     case R.id.navigation_sub_item_1:
-                        fragment = new HomeFragment();
                         title = getString(R.string.title_home);
                         Snackbar.make(findViewById(android.R.id.content), title, Snackbar.LENGTH_SHORT).show();
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_body, new HomeFragment()).commit();
+                        getSupportActionBar().setTitle(title);
                         break;
                     case R.id.navigation_sub_item_2:
-                        fragment = new RecetasFragment();
+
                         title = getString(R.string.title_recetas);
                         Snackbar.make(findViewById(android.R.id.content), title, Snackbar.LENGTH_SHORT).show();
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_body, new RecetasFragment()).commit();
+                        getSupportActionBar().setTitle(title);
                         break;
                     case R.id.navigation_sub_item_3:
-                        fragment = new IngredientesFragment();
+
                         title = getString(R.string.title_ingredientes);
                         Snackbar.make(findViewById(android.R.id.content), title, Snackbar.LENGTH_SHORT).show();
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_body, new IngredientesFragment()).commit();
+                        getSupportActionBar().setTitle(title);
                         break;
                     case R.id.navigation_sub_item_4:
-                        fragment = new FavoritosFragment();
+
                         title = getString(R.string.title_favoritos);
                         Snackbar.make(findViewById(android.R.id.content), title, Snackbar.LENGTH_SHORT).show();
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_body, new FavoritosFragment()).commit();
+                        getSupportActionBar().setTitle(title);
                         break;
                     default:
                         break;
-                }
-
-                if (fragment != null) {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container_body, fragment);
-                    fragmentTransaction.commit();
-
-                    // set the toolbar title
-                    getSupportActionBar().setTitle(title);
                 }
 
                 Log.d("MENU ITEM", menuItem.getTitle().toString());

@@ -79,12 +79,10 @@ public class Tab_Recipes extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = new PasosFragment();
-
         fragmentTransaction.add(R.id.container_body, fragment);
         fragmentTransaction.commit();
 
-
-        //rootView.getContext().getSupportActionBar().setTitle("Busqueda Receta");
+        //getFragmentManager().beginTransaction().replace(R.id.container_body, new HomeFragment()).commit();
         ((ActionBarActivity) rootView.getContext()).getSupportActionBar().setTitle("Receta");
     }
 
@@ -94,7 +92,7 @@ public class Tab_Recipes extends Fragment {
         listado = querys.lista;
 
         ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, listado);
+                new ArrayAdapter<String>(rootView.getContext(),android.R.drawable.star_big_on, android.R.layout.simple_list_item_1, listado);
         recipeListView.setAdapter(itemsAdapter);
         recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
