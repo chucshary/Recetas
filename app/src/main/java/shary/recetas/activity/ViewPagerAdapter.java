@@ -1,8 +1,8 @@
 package shary.recetas.activity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.View;
 
 import shary.recetas.activity.ingredients.Tab_1;
@@ -21,7 +21,7 @@ import shary.recetas.activity.step.Tab_2_Step;
 /**
  * Created by Shary on 04/07/2015.
  */
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private int PAGE_COUNT;
     private String[] tabTitles;
     private View context;

@@ -1,7 +1,5 @@
 package shary.recetas.activity;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,13 +41,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.RecetaViewHolder> 
     public RecetaViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.cardview, viewGroup, false);
-        v.setOnClickListener(new View.OnClickListener() {
+        /*v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((Activity) v.getContext()).getFragmentManager().beginTransaction().replace(R.id.container_body, new PasosFragment()).commit();
                 ((ActionBarActivity) v.getContext()).getSupportActionBar().setTitle("Receta");
             }
-        });
+        });*/
         return new RecetaViewHolder(v);
     }
 
