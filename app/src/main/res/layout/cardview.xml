@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/imagen"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -26,8 +26,8 @@
             android:layout_toRightOf="@+id/imagen"
             android:fontFamily="Times New Roman"
             android:text="Large Text"
-            android:textColor="@color/abc_primary_text_disable_only_material_dark"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/abc_primary_text_disable_only_material_dark" />
 
         <TextView
             android:id="@+id/categoria"
@@ -38,7 +38,7 @@
             android:fontFamily="Times New Roman"
             android:text="Small Text"
             android:textColor="@color/primary_text_default_material_dark"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textSize="12sp" />
 
         <!-- <View
              android:id="@+id/linea"

@@ -63,7 +63,7 @@ public class Recycler extends Fragment {
         System.out.println("TOTAL " + listado.size());
         List items = new ArrayList();
         for (int i = 0; i < listado.size(); i++) {
-            items.add(new RecetaAux(R.drawable.favourite24, listado.get(i).toString(), "Dificil"));
+            items.add(new RecetaAux(R.drawable.favourite24, listado.get(i).toString(), listado2.get(i).toString()));
         }
 
 
@@ -82,29 +82,34 @@ public class Recycler extends Fragment {
         Querys querys = new Querys(rootView.getContext(), "recipe");
         querys.listado(columnsTable.getColumnsTableRecipe(), 1, "tipo", "DESAYUNO");
         listado = querys.lista;
+        listado2 = querys.lista1;
     }
 
     public void pasta() {
         Querys querys = new Querys(rootView.getContext(), "recipe");
         querys.listado(columnsTable.getColumnsTableRecipe(), 1, "tipo", "PASTA");
         listado = querys.lista;
+        listado2 = querys.lista1;
     }
 
     public void entrada() {
         Querys querys = new Querys(rootView.getContext(), "recipe");
         querys.listado(columnsTable.getColumnsTableRecipe(), 1, "tipo", "ENTRADA");
         listado = querys.lista;
+        listado2 = querys.lista1;
     }
 
     public void platoFuerte() {
         Querys querys = new Querys(rootView.getContext(), "recipe");
         querys.listado(columnsTable.getColumnsTableRecipe(), 1, "tipo", "PLATO FUERTE");
         listado = querys.lista;
+        listado2 = querys.lista1;
     }
 
     public void postre() {
         Querys querys = new Querys(rootView.getContext(), "recipe");
         querys.listado(columnsTable.getColumnsTableRecipe(), 1, "tipo", "POSTRE");
         listado = querys.lista;
+        listado2 = querys.lista1;
     }
 }

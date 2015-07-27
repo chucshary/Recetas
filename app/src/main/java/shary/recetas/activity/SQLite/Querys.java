@@ -67,6 +67,7 @@ public class Querys {
                         valor[i] = cursor.getString(i);
                     }
                     lista.add(valor[numColumna]);
+                    lista1.add(valor[3]);
                 } while (cursor.moveToNext());
             }
             cursor.close();
