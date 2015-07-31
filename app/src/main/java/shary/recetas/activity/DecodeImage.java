@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import shary.recetas.R;
 
@@ -30,7 +29,7 @@ public class DecodeImage extends ActionBarActivity {
     }
 
     public String encodeTobase64() {
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.logorecetasp3);
+        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.home100);
         Bitmap immagex = image;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         immagex.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -46,26 +45,19 @@ public class DecodeImage extends ActionBarActivity {
         byte[] decodedByteString = Base64.decode(base64, 0);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedByteString, 0, decodedByteString.length);
 
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        decodedByte.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         try {
-
-            //you can create a new file name "test.jpg" in sdcard folder.
-            File f = new File(Environment.getExternalStorageDirectory()
-                    + File.separator + "test.jpg");
-            f.createNewFile();
-            //write the bytes in file
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-
-            // remember close de FileOutput
-            fo.close();
-
-            imagenDecode.setImageBitmap(decodedByte);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File file = new File(extStorageDirectory, "ic_launcher_shary.PNG");
+            FileOutputStream outStream = new FileOutputStream(file);
+            decodedByte.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+            outStream.flush();
+            outStream.close();
         }
+        catch (Exception e)
+        {
+
+        }
+
 
     }
 
