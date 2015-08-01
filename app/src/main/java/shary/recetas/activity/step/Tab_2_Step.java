@@ -1,6 +1,8 @@
 package shary.recetas.activity.step;
 
-import android.support.v4.app.Fragment;
+
+import android.content.DialogInterface;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,13 +10,17 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,43 +34,58 @@ import shary.recetas.activity.SQLite.Variables;
 /**
  * Created by Shary on 04/07/2015.
  */
-public class Tab_2_Step extends Fragment implements OnClickListener, TextToSpeech.OnInitListener {
+public class Tab_2_Step extends Fragment implements TextToSpeech.OnInitListener {
     private static final int MY_DATA_CHECK_CODE = 1234;
     private static final String TAG = "TextToSpeechDemo";
     private ColumnsTable columnsTable = new ColumnsTable();
     private Variables variables = new Variables();
     private ListView ingredientsListView;
-    private TextToSpeech t1;
+    protected TextToSpeech t1;
     public List<String> listado;
     public List<String> listado2;
     SharedPreferences sharedPreferences;
     public String instruccioness = "";
     private ActionBar ab;
     String id = "";
-    Boolean speak = false;
+    public TextView textView;
+    public TextView textView2;
+    public View dialogView;
+    public AlertDialog.Builder dialogBuilder;
+    public LayoutInflater inflater2;
+    public AlertDialog dlg;
     View rootView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.tab2_step, container, false);
         ingredientsListView = (ListView) rootView.findViewById(R.id.instruccion_list_view);
-        instrucciones();
         Intent checkIntent = new Intent();
         checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
+        dialogBuilder = new AlertDialog.Builder(this.getActivity());
+        inflater2 = this.getActivity().getLayoutInflater();
         FloatingActionButton myFab = (FloatingActionButton) rootView.findViewById(R.id.btn_voice);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                alert();
+                Locale loc = new Locale("spa", "MEX");
+                t1.setLanguage(loc);
                 Querys querys = new Querys(rootView.getContext(), "step");
                 querys.listado(columnsTable.getColumnsTableStep(), 2, "id_step_recipe_id", getIdRecipe());
                 listado2 = querys.lista;
                 String texto = "";
                 for (int i = 0; i < listado.size(); i++) {
-                    texto += listado2.get(i);
+                    texto += "Paso "+(i+1)+ ": " + listado2.get(i).toLowerCase();
+                    if(i!=listado.size()){
+                        texto +="\n";
+                    }
                 }
+                textView2.setText(texto);
                 t1.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
+                dlg = dialogBuilder.show();
             }
         });
+        instrucciones();
         return rootView;
     }
 
@@ -90,6 +111,38 @@ public class Tab_2_Step extends Fragment implements OnClickListener, TextToSpeec
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, array3);
         ingredientsListView.setAdapter(itemsAdapter);
+        ingredientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                alert();
+                Locale loc = new Locale("spa", "MEX");
+                t1.setLanguage(loc);
+                Querys querys = new Querys(rootView.getContext(), "step");
+                querys.listado(columnsTable.getColumnsTableStep(), 2, "id_step_recipe_id", getIdRecipe());
+                listado2 = querys.lista;
+                String texto = "Paso "+(position+1)+": " + listado2.get(position).toLowerCase();
+                textView2.setText(texto);
+                t1.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
+                dlg = dialogBuilder.show();
+            }
+        });
+    }
+
+    public void alert(){
+        dialogView = inflater2.inflate(R.layout.ttsdialog, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setCancelable(false);
+        textView = (TextView) dialogView.findViewById(R.id.txtviewdiagtitle);
+        textView.setText("Pasos de la receta");
+        textView2 = (TextView) dialogView.findViewById(R.id.txtviewdiagtext);
+        Button btn = (Button) dialogView.findViewById(R.id.btndiag);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t1.stop();
+                dlg.dismiss();
+            }
+        });
     }
 
     @Override
@@ -122,10 +175,6 @@ public class Tab_2_Step extends Fragment implements OnClickListener, TextToSpeec
     }
 
     @Override
-    public void onClick(View v) {
-    }
-
-    @Override
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
             t1.setLanguage(Locale.getDefault());
@@ -133,4 +182,5 @@ public class Tab_2_Step extends Fragment implements OnClickListener, TextToSpeec
             Log.e("TTS", "Initialization failed");
         }
     }
+
 }
