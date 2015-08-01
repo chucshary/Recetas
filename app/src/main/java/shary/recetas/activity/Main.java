@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -65,6 +66,16 @@ public class Main extends ActionBarActivity {
                 int x = menuItem.getItemId();
                 String title = menuItem.getTitle().toString();
                 titulo = title;
+                try {
+                    Fragment tab1 = getFragmentManager().findFragmentById(R.id.ingredients_list_view);
+                    Fragment tab2 = getFragmentManager().findFragmentById(R.id.instruccion_list_view);
+                    if(tab1 != null || tab2 != null) {
+                        getFragmentManager().beginTransaction().remove(tab1).commit();
+                        getFragmentManager().beginTransaction().remove(tab2).commit();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 switch (x) {
                     case R.id.navigation_sub_item_1:
                         title = getString(R.string.title_home);
