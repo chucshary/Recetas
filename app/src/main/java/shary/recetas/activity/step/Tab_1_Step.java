@@ -1,7 +1,6 @@
 package shary.recetas.activity.step;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,15 +11,12 @@ import android.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,10 +24,8 @@ import java.util.List;
 import java.util.Locale;
 
 import shary.recetas.R;
-import shary.recetas.activity.RecetaAux;
 import shary.recetas.activity.SQLite.ColumnsTable;
 import shary.recetas.activity.SQLite.Querys;
-import shary.recetas.activity.ViewPagerAdapter;
 
 /**
  * Created by Shary on 04/07/2015.
@@ -62,7 +56,7 @@ public class Tab_1_Step extends Fragment implements TextToSpeech.OnInitListener{
         checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
         dialogBuilder = new AlertDialog.Builder(this.getActivity());
-        inflater2 = this.getLayoutInflater(savedInstanceState);
+        inflater2 = this.getActivity().getLayoutInflater();
         //set up button
         FloatingActionButton myFab = (FloatingActionButton)  rootView.findViewById(R.id.btn_voice);
         myFab.setOnClickListener(new View.OnClickListener() {

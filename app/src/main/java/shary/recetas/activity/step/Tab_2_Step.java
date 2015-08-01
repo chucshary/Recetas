@@ -2,7 +2,7 @@ package shary.recetas.activity.step;
 
 
 import android.content.DialogInterface;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -63,7 +63,7 @@ public class Tab_2_Step extends Fragment implements TextToSpeech.OnInitListener 
         checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
         dialogBuilder = new AlertDialog.Builder(this.getActivity());
-        inflater2 = this.getLayoutInflater(savedInstanceState);
+        inflater2 = this.getActivity().getLayoutInflater();
         FloatingActionButton myFab = (FloatingActionButton) rootView.findViewById(R.id.btn_voice);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
