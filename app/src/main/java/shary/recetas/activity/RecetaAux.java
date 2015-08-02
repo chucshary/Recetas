@@ -1,27 +1,17 @@
 package shary.recetas.activity;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by Shary on 25/07/2015.
  */
 public class RecetaAux {
-    Bitmap idPhoto;
+    Integer idPhoto;
     String name;
     String category;
 
-    public RecetaAux(Bitmap idPhoto, String name, String category) {
+    public RecetaAux(Integer idPhoto, String name, String category) {
         this.idPhoto = idPhoto;
         this.name = name;
         this.category = category;
-    }
-
-    public Bitmap getIdPhoto() {
-        return idPhoto;
-    }
-
-    public void setIdPhoto(Bitmap idPhoto) {
-        this.idPhoto = idPhoto;
     }
 
     public String getName() {
@@ -38,5 +28,13 @@ public class RecetaAux {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Integer getIdPhoto() {
+        return idPhoto;
+    }
+
+    public void setIdPhoto(Integer idPhoto) {
+        this.idPhoto = idPhoto;
     }
 }

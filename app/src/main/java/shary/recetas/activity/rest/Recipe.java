@@ -13,22 +13,7 @@ public class Recipe {
     private String nombreimagen;
     private String base64;
 
-    public String getNombreimagen() {
-        return nombreimagen;
-    }
-
-    public void setNombreimagen(String nombreimagen) {
-        this.nombreimagen = nombreimagen;
-    }
-
-    public String getBase64() {
-        return base64;
-    }
-
-    public void setBase64(String base64) {
-        this.base64 = base64;
-    }
-
+    
     public Integer getId() {
         return id;
     }
@@ -75,5 +60,21 @@ public class Recipe {
 
     public void setPorcion(Integer porcion) {
         this.porcion = porcion;
+    }
+
+    public String getNombreimagen() {
+        return nombreimagen;
+    }
+
+    public void setNombreimagen(String nombreimagen) {
+        this.nombreimagen = nombreimagen;
+    }
+
+    public String getBase64() {
+        return base64;
+    }
+
+    public void setBase64(String base64) {
+        this.base64 = base64;
     }
 }
